@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat, Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ServiceModal from "@/components/ServiceModal";
+import { ServiceModalProvider } from "@/context/ServiceModalContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +30,6 @@ const inter = Inter({
   display: "swap",
 });
 
-
 export const metadata: Metadata = {
   title: "Front Line Automotive | Precision in Motion",
   description:
@@ -43,7 +46,14 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${inter.variable} h-full antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        <ServiceModalProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <ServiceModal />
+        </ServiceModalProvider>
+      </body>{" "}
     </html>
   );
 }

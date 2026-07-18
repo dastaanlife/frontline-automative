@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import CarMark from "./CarMark";
 
@@ -25,7 +26,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <CarMark className="h-6 w-14 text-ink" strokeWidth={2} />
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold tracking-wide text-ink">
@@ -35,16 +36,16 @@ export default function Navbar() {
               PRECISION IN MOTION
             </span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-10 md:flex">
-          <a href="#services" className="nav-link">
+          <Link href="/services" className="nav-link">
             Services
-          </a>
-          <a href="#contact" className="btn-gold">
+          </Link>
+          <Link href="/#contact" className="btn-gold">
             Contact Us
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile toggle */}
@@ -64,12 +65,12 @@ export default function Navbar() {
         }`}
       >
         <div className="flex flex-col gap-4 px-6 pb-6">
-          <a href="#services" className="nav-link" onClick={() => setOpen(false)}>
+          <Link href="/services" className="nav-link" onClick={() => setOpen(false)}>
             Services
-          </a>
-          <a href="#contact" className="btn-gold w-fit" onClick={() => setOpen(false)}>
+          </Link>
+          <Link href="/#contact" className="btn-gold w-fit" onClick={() => setOpen(false)}>
             Contact Us
-          </a>
+          </Link>
         </div>
       </div>
     </header>

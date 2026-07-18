@@ -1,11 +1,11 @@
 import CarMark from "./CarMark";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Brands We Serve", href: "#brands" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "About Us", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "Brands We Serve", href: "/#brands" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 export default function Footer() {
@@ -13,7 +13,7 @@ export default function Footer() {
     <footer className="bg-paper">
       <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 lg:px-16">
         <div className="flex flex-col items-center gap-8 border-b border-line pb-10 text-center lg:flex-row lg:justify-between lg:text-left">
-          <a href="#home" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <CarMark className="h-6 w-14 text-ink" strokeWidth={2} />
             <span className="flex flex-col leading-none">
               <span className="font-display text-base font-bold tracking-wide text-ink">
