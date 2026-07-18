@@ -1,0 +1,86 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { UserCheck, Cpu, Award, Aperture } from "lucide-react";
+import CarMark from "./CarMark";
+
+const features = [
+  { icon: UserCheck, label: "Certified Experts" },
+  { icon: Cpu, label: "Advanced Technology" },
+  { icon: Award, label: "Premium Experience" },
+  { icon: Aperture, label: "Precision Guaranteed" },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+export default function About() {
+  return (
+    <section id="about" className="section-pad bg-paper">
+      <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-14">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <p className="eyebrow mb-4">About Us</p>
+          <h2 className="font-display text-3xl font-extrabold uppercase leading-tight text-ink sm:text-4xl">
+            Driven by Passion.{" "}
+            <span className="text-gold-500">Defined by Precision.</span>
+          </h2>
+          <p className="mt-6 text-[15px] leading-relaxed text-ink-soft">
+            Front Line Automotive is a luxury automotive service center
+            dedicated to preserving, restoring, and enhancing the world&apos;s
+            most exceptional vehicles. Our certified experts combine
+            cutting-edge technology with meticulous craftsmanship to deliver
+            unmatched results and an ownership experience like no other.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+            {features.map(({ icon: Icon, label }) => (
+              <div key={label} className="flex flex-col items-start gap-3">
+                <span className="flex h-11 w-11 items-center justify-center border border-line text-gold-500 transition-colors duration-300 hover:border-gold-500">
+                  <Icon size={20} strokeWidth={1.75} />
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-wide text-ink">
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ delay: 0.1 }}
+          className="relative aspect-[4/3] overflow-hidden bg-ink"
+        >
+          <div
+            className="absolute inset-0 opacity-[0.08]"
+            style={{
+              backgroundImage:
+                "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+              backgroundSize: "36px 36px",
+            }}
+          />
+          <div className="absolute -right-10 -top-6 h-56 w-56 rounded-full bg-gold-500/20 blur-3xl" />
+          <div className="absolute inset-0 flex items-center justify-center p-10">
+            <CarMark className="w-full text-gold-100" strokeWidth={1.1} />
+          </div>
+          <div className="absolute bottom-6 left-6 right-6 flex items-center gap-3 text-white/80">
+            <span className="h-px w-10 bg-gold-500" />
+            <span className="text-xs font-medium uppercase tracking-widest2">
+              Al Quoz Showroom, Dubai
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

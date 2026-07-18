@@ -2,25 +2,114 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #17181b;
 }
 
 @theme inline {
+  /* Base */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Brand palette */
+  --color-ink: #17181b;
+  --color-ink-soft: #4b4b4f;
+  --color-ink-faint: #8a8a8d;
+
+  --color-gold-50: #fbf6ea;
+  --color-gold-100: #f3e6c4;
+  --color-gold-300: #e1be72;
+  --color-gold-500: #c0922e;
+  --color-gold-600: #a97a21;
+  --color-gold-700: #8c631a;
+
+  --color-paper: #ffffff;
+  --color-mist: #f6f5f2;
+  --color-line: #e7e4dd;
+
+  /* Typography (raw font vars come from next/font in layout.tsx) */
+  --font-display: var(--font-display-raw), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-body-raw), ui-sans-serif, system-ui, sans-serif;
+  --tracking-widest2: 0.28em;
+
+  /* Shadows */
+  --shadow-card: 0 2px 24px rgba(23, 24, 27, 0.06);
+  --shadow-cardHover: 0 12px 32px rgba(23, 24, 27, 0.12);
+
+  /* Hero white-to-image wipe */
+  --background-image-hero-wipe: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 38%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.25) 66%,
+    rgba(255, 255, 255, 0) 82%
+  );
+
+  /* Ambient brand-strip motion */
+  --animate-marquee: marquee 32s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold-500) 20%, transparent);
+  color: var(--color-ink);
+}
+
+/* Eyebrow label used above section headings */
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-widest2 text-gold-500;
+}
+
+/* Gold underline that grows in on hover, used for nav links */
+.nav-link {
+  @apply relative text-sm font-medium text-ink-soft transition-colors hover:text-ink;
+}
+.nav-link::after {
+  content: "";
+  @apply absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-gold-500 transition-transform duration-300 ease-out;
+}
+.nav-link:hover::after {
+  @apply scale-x-100;
+}
+.nav-link.active::after {
+  @apply scale-x-100;
+}
+
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 bg-gold-500 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-gold-600 active:scale-[0.98];
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 border border-ink px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-ink transition-all duration-300 hover:bg-ink hover:text-white active:scale-[0.98];
+}
+
+.section-pad {
+  @apply px-6 py-20 sm:px-10 lg:px-16 lg:py-28;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
