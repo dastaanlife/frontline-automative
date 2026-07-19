@@ -1,8 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import CarMark from "./CarMark";
+
+// Drop banner1.webp ... banner4.webp into /public (or update these paths
+// if you keep them in a subfolder, e.g. "/hero/banner1.webp").
+const BANNERS = ["/img/banner1.webp", "/img/banner2.webp", "/img/banner3.webp", "/img/banner4.webp"];
+
+const DISPLAY_MS = 3000; // how long each banner holds before the next wipe
+const WIPE_SECONDS = 1; // duration of the wipe transition itself
+const WIPE_EASE: [number, number, number, number] = [0.65, 0, 0.35, 1];
 
 const container = {
   hidden: {},
@@ -17,34 +26,69 @@ const item = {
 };
 
 export default function Hero() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const nextIndex = (index + 1) % BANNERS.length;
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % BANNERS.length);
+    }, DISPLAY_MS);
+    return () => clearInterval(id);
+  }, [paused]);
+
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-mist pt-28 lg:pt-32"
+      className="relative overflow-hidden bg-ink pt-28 lg:pt-32"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      {/* Workshop backdrop: blueprint grid + soft gold glow, standing in for the studio photograph */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
-            backgroundSize: "42px 42px",
-            color: "#17181B",
-          }}
-        />
-        <div className="absolute -right-16 top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-gold-500/10 blur-3xl lg:h-[620px] lg:w-[620px]" />
+      {/* Precision-wipe banner slideshow */}
+      <div className="absolute inset-0" aria-hidden="true">
+        {/* Base layer: the current banner, always fully visible underneath */}
+        <div className="absolute inset-0">
+          <Image
+            src={BANNERS[index]}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+
+        {/* Incoming layer: next banner, wipes in over the base from right to left.
+            key={nextIndex} forces a remount each cycle so the clip-path always
+            restarts from fully hidden before animating to fully revealed. */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
-          className="absolute right-[-6%] top-1/2 hidden w-[62%] -translate-y-1/2 text-ink/90 sm:block lg:right-0 lg:w-[54%]"
+          key={nextIndex}
+          initial={{ clipPath: "inset(0% 0% 0% 100%)" }}
+          animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+          transition={{ duration: WIPE_SECONDS, ease: WIPE_EASE }}
+          className="absolute inset-0"
         >
-          <CarMark className="w-full text-ink/80" strokeWidth={1.2} />
+          <Image
+            src={BANNERS[nextIndex]}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
         </motion.div>
+
+        {/* Traveling gold seam, synced to the same clip-path transition */}
+        <motion.div
+          key={`seam-${nextIndex}`}
+          initial={{ left: "100%" }}
+          animate={{ left: "0%" }}
+          transition={{ duration: WIPE_SECONDS, ease: WIPE_EASE }}
+          className="absolute inset-y-0 w-[3px] bg-gold-500 shadow-[0_0_16px_rgba(192,146,46,0.7)]"
+        />
       </div>
 
-      {/* White wipe: opaque on the left where copy sits, dissolving toward the illustration */}
+      {/* White wipe: opaque on the left where copy sits, dissolving toward the banner */}
       <div className="pointer-events-none absolute inset-0 bg-hero-wipe" />
 
       <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-10 sm:px-10 lg:px-16 lg:pb-32 lg:pt-16">
