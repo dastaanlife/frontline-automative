@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { UserCheck, Cpu, Award, Aperture } from "lucide-react";
 import CarMark from "./CarMark";
 
@@ -41,11 +42,11 @@ export default function About() {
 
           <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
             {features.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex flex-col items-start gap-3">
+              <div key={label} className="flex flex-col items-center gap-3">
                 <span className="flex h-11 w-11 items-center justify-center border border-line text-gold-500 transition-colors duration-300 hover:border-gold-500">
                   <Icon size={20} strokeWidth={1.75} />
                 </span>
-                <span className="text-xs font-semibold uppercase tracking-wide text-ink">
+                <span className="text-xs text-center font-semibold uppercase tracking-wide text-ink">
                   {label}
                 </span>
               </div>
@@ -61,24 +62,12 @@ export default function About() {
           transition={{ delay: 0.1 }}
           className="relative aspect-[4/3] overflow-hidden bg-ink"
         >
-          <div
-            className="absolute inset-0 opacity-[0.08]"
-            style={{
-              backgroundImage:
-                "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-              backgroundSize: "36px 36px",
-            }}
+          <Image
+            src="/img/banner5.webp"
+            alt="About Front Line Automotive"
+            fill
+            className="object-cover"
           />
-          <div className="absolute -right-10 -top-6 h-56 w-56 rounded-full bg-gold-500/20 blur-3xl" />
-          <div className="absolute inset-0 flex items-center justify-center p-10">
-            <CarMark className="w-full text-gold-100" strokeWidth={1.1} />
-          </div>
-          <div className="absolute bottom-6 left-6 right-6 flex items-center gap-3 text-white/80">
-            <span className="h-px w-10 bg-gold-500" />
-            <span className="text-xs font-medium uppercase tracking-widest2">
-              Al Quoz Showroom, Dubai
-            </span>
-          </div>
         </motion.div>
       </div>
     </section>

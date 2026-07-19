@@ -17,12 +17,27 @@ const cardVariant = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
+// Widths tuned so exactly 1 / 2 / 3 / 4 / 5 full cards are visible at a time,
+// accounting for the gap-5 (20px) spacing between cards. Adjust the math
+// here if the gap value or breakpoint counts change.
+const CARD_WIDTH_CLASSES =
+  "w-full sm:w-[calc(50%-10px)] md:w-[calc(33.3333%-13.333px)] lg:w-[calc(25%-15px)] xl:w-[calc(20%-16px)]";
+
 export default function Services() {
   const trackRef = useRef<HTMLDivElement>(null);
   const { openService } = useServiceModal();
 
   const scroll = (dir: 1 | -1) => {
-    trackRef.current?.scrollBy({ left: dir * 300, behavior: "smooth" });
+    const track = trackRef.current;
+    if (!track) return;
+
+    // Step by exactly one card's rendered width (+ gap), so we always land
+    // on a full card regardless of screen size.
+    const firstCard = track.querySelector<HTMLElement>("[data-carousel-card]");
+    const gap = parseFloat(getComputedStyle(track).columnGap || "20") || 20;
+    const step = firstCard ? firstCard.offsetWidth + gap : track.clientWidth;
+
+    track.scrollBy({ left: dir * step, behavior: "smooth" });
   };
 
   return (
@@ -47,13 +62,13 @@ export default function Services() {
           </Link>
         </div>
 
-        <div className="relative flex items-center gap-4">
+        <div className="relative flex items-center gap-3 sm:gap-4">
           <button
             onClick={() => scroll(-1)}
             aria-label="Scroll left"
-            className="hidden h-10 w-10 flex-none items-center justify-center border border-line bg-paper text-ink transition-colors duration-300 hover:border-gold-500 hover:text-gold-500 sm:flex"
+            className="flex h-8 w-8 flex-none items-center justify-center border border-line bg-paper text-ink transition-colors duration-300 hover:border-gold-500 hover:text-gold-500 sm:h-10 sm:w-10"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
           </button>
 
           <motion.div
@@ -69,19 +84,23 @@ export default function Services() {
               return (
                 <motion.button
                   key={service.slug}
+                  data-carousel-card
                   variants={cardVariant}
                   onClick={() => openService(service)}
-                  className="group flex w-[210px] flex-none snap-start flex-col items-start gap-4 border border-line bg-paper p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold-500 hover:shadow-cardHover"
+                  className={`group flex ${CARD_WIDTH_CLASSES} flex-none snap-start flex-col items-center gap-4 border border-line bg-paper p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold-500 hover:shadow-cardHover mt-2`}
                 >
                   <span className="flex h-12 w-12 items-center justify-center border border-line text-gold-500 transition-colors duration-300 group-hover:border-gold-500 group-hover:bg-gold-500 group-hover:text-white">
                     <Icon size={20} strokeWidth={1.75} />
                   </span>
-                  <h3 className="font-display text-sm font-bold uppercase leading-snug tracking-wide text-ink">
+                  <h3 className="font-display text-sm text-center font-bold uppercase leading-snug tracking-wide text-ink">
                     {service.title}
                   </h3>
-                  <span className="mt-auto flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="mt-auto flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold-500">
                     View Details
-                    <ArrowRight size={13} />
+                    <ArrowRight
+                      size={13}
+                      className="transition-transform duration-300 group-hover:translate-x-1.5"
+                    />
                   </span>
                 </motion.button>
               );
@@ -89,7 +108,7 @@ export default function Services() {
 
             <Link
               href="/services"
-              className="flex w-[210px] flex-none snap-start flex-col items-center justify-center gap-3 border border-dashed border-gold-500/50 bg-gold-500/5 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-gold-500 hover:bg-gold-500/10"
+              className={`flex ${CARD_WIDTH_CLASSES} flex-none snap-start flex-col items-center justify-center gap-3 border border-dashed border-gold-500/50 bg-gold-500/5 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-gold-500 hover:bg-gold-500/10 mt-2`}
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold-500 text-gold-500">
                 <ArrowRight size={18} />
@@ -103,9 +122,9 @@ export default function Services() {
           <button
             onClick={() => scroll(1)}
             aria-label="Scroll right"
-            className="hidden h-10 w-10 flex-none items-center justify-center border border-line bg-paper text-ink transition-colors duration-300 hover:border-gold-500 hover:text-gold-500 sm:flex"
+            className="flex h-8 w-8 flex-none items-center justify-center border border-line bg-paper text-ink transition-colors duration-300 hover:border-gold-500 hover:text-gold-500 sm:h-10 sm:w-10"
           >
-            <ChevronRight size={18} />
+            <ChevronRight className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
           </button>
         </div>
       </div>
