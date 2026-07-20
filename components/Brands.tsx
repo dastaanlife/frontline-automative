@@ -1,102 +1,111 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const brands = [
+type Brand = {
+  name: string;
+  image: string; // filename inside /public/brands
+};
+
+const brands: Brand[] = [
   // European
-  { name: "Abarth", initial: "AB" },
-  { name: "Alfa Romeo", initial: "AR" },
-  { name: "Audi", initial: "AU" },
-  { name: "Bentley", initial: "B" },
-  { name: "BMW", initial: "BMW" },
-  { name: "Bugatti", initial: "BG" },
-  { name: "Citroën", initial: "CT" },
-  { name: "Cupra", initial: "CP" },
-  { name: "Dacia", initial: "DC" },
-  { name: "DS Automobiles", initial: "DS" },
-  { name: "Ferrari", initial: "F" },
-  { name: "Fiat", initial: "FI" },
-  { name: "Ford", initial: "FD" },
-  { name: "Jaguar", initial: "J" },
-  { name: "Lamborghini", initial: "L" },
-  { name: "Lancia", initial: "LC" },
-  { name: "Land Rover", initial: "LR" },
-  { name: "Lotus", initial: "LT" },
-  { name: "Maserati", initial: "MS" },
-  { name: "Maybach", initial: "MY" },
-  { name: "Mercedes-Benz", initial: "MB" },
-  { name: "MINI", initial: "MINI" },
-  { name: "Opel", initial: "OP" },
-  { name: "Peugeot", initial: "PG" },
-  { name: "Porsche", initial: "P" },
-  { name: "Renault", initial: "RN" },
-  { name: "Rolls-Royce", initial: "RR" },
-  { name: "Saab", initial: "SB" },
-  { name: "SEAT", initial: "SEAT" },
-  { name: "Škoda", initial: "SK" },
-  { name: "Smart", initial: "SM" },
-  { name: "Vauxhall", initial: "VX" },
-  { name: "Volkswagen", initial: "VW" },
-  { name: "Volvo", initial: "VO" },
+  { name: "Abarth", image: "abarth.webp" },
+  { name: "Alfa Romeo", image: "alpha-romeo.webp" },
+  { name: "Audi", image: "audi.webp" },
+  { name: "Bentley", image: "bentely.webp" },
+  { name: "BMW", image: "bmw.webp" },
+  { name: "Bugatti", image: "bugatti.webp" },
+  { name: "Citroën", image: "citroen.webp" },
+  { name: "Cupra", image: "cupra.webp" },
+  { name: "Dacia", image: "dacia.webp" },
+  { name: "DS Automobiles", image: "ds-automobiles.webp" },
+  { name: "Ferrari", image: "ferrari.webp" },
+  { name: "Fiat", image: "fiat.webp" },
+  { name: "Ford", image: "ford.webp" },
+  { name: "Jaguar", image: "jaguar.webp" },
+  { name: "Lamborghini", image: "lamborghini.webp" },
+  { name: "Lancia", image: "lancia.webp" },
+  { name: "Land Rover", image: "land-rover.webp" },
+  { name: "Lotus", image: "lotus.webp" },
+  { name: "Maserati", image: "maserati.webp" },
+  { name: "Maybach", image: "maybach.webp" },
+  { name: "Mercedes-Benz", image: "mercedes.webp" },
+  { name: "MINI", image: "mini.webp" },
+  { name: "Opel", image: "opel.webp" },
+  { name: "Peugeot", image: "peugeot.webp" },
+  { name: "Porsche", image: "porsche.webp" },
+  { name: "Renault", image: "renault-group.webp" },
+  { name: "Rolls-Royce", image: "rolls-royce.webp" },
+  { name: "Saab", image: "saab.webp" },
+  { name: "SEAT", image: "seat.webp" },
+  { name: "Škoda", image: "skoda-auto.webp" },
+  { name: "Smart", image: "smart.webp" },
+  { name: "Vauxhall", image: "vauxhall.webp" },
+  { name: "Volkswagen", image: "volkswagen.webp" },
+  { name: "Volvo", image: "volvo-cars.webp" },
 
   // Japanese
-  { name: "Acura", initial: "AC" },
-  { name: "Daihatsu", initial: "DH" },
-  { name: "Honda", initial: "H" },
-  { name: "Infiniti", initial: "IN" },
-  { name: "Isuzu", initial: "IS" },
-  { name: "Lexus", initial: "LX" },
-  { name: "Mazda", initial: "MZ" },
-  { name: "Mitsubishi", initial: "MT" },
-  { name: "Nissan", initial: "N" },
-  { name: "Subaru", initial: "SU" },
-  { name: "Suzuki", initial: "SZ" },
-  { name: "Toyota", initial: "TY" },
+  { name: "Acura", image: "acura.webp" },
+  { name: "Daihatsu", image: "daihatsu.webp" },
+  { name: "Honda", image: "honda.webp" },
+  { name: "Infiniti", image: "infiniti.webp" },
+  { name: "Isuzu", image: "isuzu.webp" },
+  { name: "Lexus", image: "lexus.webp" },
+  { name: "Mazda", image: "mazda.webp" },
+  { name: "Mitsubishi", image: "mitsubishi.webp" },
+  { name: "Nissan", image: "nissan.webp" },
+  { name: "Subaru", image: "subaru.webp" },
+  { name: "Suzuki", image: "suzuki.webp" },
+  { name: "Toyota", image: "toyota.webp" },
 
   // Korean
-  { name: "Genesis", initial: "GN" },
-  { name: "Hyundai", initial: "HY" },
-  { name: "Kia", initial: "K" },
-  { name: "SsangYong", initial: "SY" },
+  { name: "Genesis", image: "genesis.webp" },
+  { name: "Hyundai", image: "hyundai.webp" },
+  { name: "Kia", image: "kia.webp" },
+  { name: "SsangYong", image: "ssang-yong.webp" },
 
   // American
-  { name: "Buick", initial: "BK" },
-  { name: "Cadillac", initial: "CD" },
-  { name: "Chevrolet", initial: "CH" },
-  { name: "Chrysler", initial: "CR" },
-  { name: "Dodge", initial: "DG" },
-  { name: "GMC", initial: "GMC" },
-  { name: "Hummer", initial: "HM" },
-  { name: "Jeep", initial: "JP" },
-  { name: "Lincoln", initial: "LN" },
-  { name: "Mercury", initial: "MC" },
-  { name: "Oldsmobile", initial: "OL" },
-  { name: "Pontiac", initial: "PT" },
-  { name: "RAM", initial: "RAM" },
-  { name: "Saturn", initial: "ST" },
-  { name: "Tesla", initial: "TS" },
+  { name: "Buick", image: "buick.webp" },
+  { name: "Cadillac", image: "cadillac.webp" },
+  { name: "Chevrolet", image: "chevrolet.webp" },
+  { name: "Chrysler", image: "chrysler.webp" },
+  { name: "Dodge", image: "dodge.webp" },
+  { name: "GMC", image: "gmc.webp" },
+  { name: "Hummer", image: "hummer.webp" },
+  { name: "Jeep", image: "jeep.webp" },
+  { name: "Lincoln", image: "lincoln.webp" },
+  { name: "Mercury", image: "mercury.webp" },
+  { name: "Oldsmobile", image: "oldsmobile.webp" },
+  { name: "Pontiac", image: "pontiac.webp" },
+  { name: "RAM", image: "ram.webp" },
+  { name: "Saturn", image: "saturn.webp" },
+  { name: "Tesla", image: "tesla.webp" },
 
   // Chinese & Other Asian
-  { name: "BAIC", initial: "BAIC" },
-  { name: "BYD", initial: "BYD" },
-  { name: "Changan", initial: "CG" },
-  { name: "Chery", initial: "CY" },
-  { name: "Dongfeng", initial: "DF" },
-  { name: "FAW", initial: "FAW" },
-  { name: "Foton", initial: "FT" },
-  { name: "GAC", initial: "GAC" },
-  { name: "Geely", initial: "GE" },
-  { name: "Great Wall", initial: "GW" },
-  { name: "Haval", initial: "HV" },
-  { name: "JAC", initial: "JAC" },
-  { name: "Leapmotor", initial: "LP" },
-  { name: "Li Auto", initial: "LA" },
-  { name: "MG", initial: "MG" },
-  { name: "NIO", initial: "NIO" },
-  { name: "Ora", initial: "OR" },
-  { name: "XPENG", initial: "XP" },
-  { name: "Zeekr", initial: "ZK" },
+  { name: "BAIC", image: "basic-group.webp" },
+  { name: "BYD", image: "byd.webp" },
+  { name: "Changan", image: "changan-auto.webp" },
+  { name: "Chery", image: "chery.webp" },
+  { name: "Dongfeng", image: "dongfeng.webp" },
+  { name: "FAW", image: "faw.webp" },
+  { name: "Foton", image: "foton.webp" },
+  { name: "GAC", image: "gac.webp" },
+  { name: "Geely", image: "geely.webp" },
+  { name: "Great Wall", image: "great-wall.webp" },
+  { name: "Haval", image: "haval.webp" },
+  // NOTE: "JAC" has no matching file in public/brands — jac.webp is missing.
+  // Add the logo and uncomment the line below once it's available.
+  // { name: "JAC", image: "jac.webp" },
+  { name: "Leapmotor", image: "leap-motor.webp" },
+  { name: "Li Auto", image: "li-auto.webp" },
+  { name: "MG", image: "mg.webp" },
+  { name: "NIO", image: "nio.webp" },
+  { name: "Ora", image: "ora.webp" },
+  { name: "XPENG", image: "xpeng.webp" },
+  { name: "Zeekr", image: "zeekr.webp" },
 ];
 
 // Widths tuned so exactly 2 / 3 / 4 / 5 / 6 full cards are visible at a time,
@@ -104,6 +113,24 @@ const brands = [
 // here if the gap value or breakpoint counts change.
 const CARD_WIDTH_CLASSES =
   "w-[calc(50%-10px)] sm:w-[calc(33.3333%-13.333px)] md:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] xl:w-[calc(16.6667%-16.667px)]";
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.04,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+};
 
 export default function Brands() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -141,25 +168,38 @@ export default function Brands() {
             <ChevronLeft className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
           </button>
 
-          <div
+          <motion.div
             ref={trackRef}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
             className="flex flex-1 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {brands.map((b) => (
-              <div
+              <motion.div
                 key={b.name}
                 data-carousel-card
-                className={`group flex ${CARD_WIDTH_CLASSES} flex-none snap-start flex-col items-center gap-4 border border-line px-4 py-8 transition-all duration-300 hover:-translate-y-1 hover:border-gold-500 hover:shadow-card mt-2`}
+                variants={cardVariants}
+                whileHover={{ y: -4 }}
+                transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
+                className={`group flex ${CARD_WIDTH_CLASSES} flex-none snap-start flex-col items-center gap-4 border border-line px-4 py-8 transition-colors duration-300 hover:border-gold-500 hover:shadow-card mt-2`}
               >
-                <span className="flex h-14 w-14 items-center justify-center rounded-full border border-ink/15 font-display text-sm font-bold tracking-wide text-ink transition-colors duration-300 group-hover:border-gold-500 group-hover:text-gold-500">
-                  {b.initial}
+                <span className="relative flex h-14 w-20 items-center justify-center">
+                  <Image
+                    src={`/brands/${b.image}`}
+                    alt={`${b.name} logo`}
+                    fill
+                    sizes="80px"
+                    className="object-contain"
+                  />
                 </span>
                 <span className="text-center text-[11px] font-semibold uppercase tracking-wide text-ink-soft">
                   {b.name}
                 </span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <button
             onClick={() => scroll(1)}
