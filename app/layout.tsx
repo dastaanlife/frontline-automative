@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceModal from "@/components/ServiceModal";
 import { ServiceModalProvider } from "@/context/ServiceModalContext";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <ServiceModal />
+          <Toaster position="bottom-right" toastOptions={{ duration: 4000, style: { background: '#1c1c1c', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' } }} />
         </ServiceModalProvider>
       </body>
     </html>

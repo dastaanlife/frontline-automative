@@ -1,4 +1,4 @@
-import CarMark from "./CarMark";
+
 
 const links = [
   { label: "Home", href: "/#home" },
@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="mx-auto px-6 py-12 sm:px-10 lg:px-16">
         <div className="flex flex-col items-center gap-8 border-b border-line pb-10 text-center lg:flex-row lg:justify-between lg:text-left">
           <a href="/" className="flex items-center gap-3">
-            <CarMark className="h-6 w-14 text-ink" strokeWidth={2} />
+            <img src="/logo/logo-c.png" alt="Front Line Automotive Logo" className="h-10 w-auto object-contain" />
             <span className="flex flex-col leading-none">
               <span className="font-display text-base font-bold tracking-wide text-ink">
                 FRONT LINE AUTOMOTIVE
@@ -37,10 +37,10 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-4 pt-6 text-xs text-ink-faint sm:flex-row">
           <p>© 2026 Front Line Automotive. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="transition-colors hover:text-gold-500">
+            <a href="/privacy-policy" className="transition-colors hover:text-gold-500">
               Privacy Policy
             </a>
-            <a href="#" className="transition-colors hover:text-gold-500">
+            <a href="/terms-and-conditions" className="transition-colors hover:text-gold-500">
               Terms &amp; Conditions
             </a>
           </div>
