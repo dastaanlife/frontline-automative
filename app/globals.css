@@ -47,6 +47,8 @@
 
   /* Ambient brand-strip motion */
   --animate-marquee: marquee 32s linear infinite;
+
+  --breakpoint-xs: 400px;
 }
 
 @keyframes marquee {

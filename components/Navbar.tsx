@@ -24,7 +24,7 @@ export default function Navbar() {
           : "bg-white/0"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
+      <div className="mx-auto flex items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <CarMark className="h-6 w-14 text-ink" strokeWidth={2} />

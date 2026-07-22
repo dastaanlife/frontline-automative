@@ -42,7 +42,7 @@ export default function Services() {
 
   return (
     <section id="services" className="section-pad bg-mist">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="flex items-center gap-5">
             <span className="h-px w-12 bg-gold-500 sm:w-20" />

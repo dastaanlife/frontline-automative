@@ -20,7 +20,7 @@ export default function ServicesGrid() {
 
   return (
     <section className="section-pad !pt-0 bg-paper sm:!pt-0">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto">
         <motion.div
           variants={container}
           initial="hidden"

@@ -20,7 +20,7 @@ const fadeUp = {
 export default function About() {
   return (
     <section id="about" className="section-pad bg-paper">
-      <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-14">
+      <div className="mx-auto grid items-center gap-16 lg:grid-cols-2 lg:gap-14">
         <motion.div
           variants={fadeUp}
           initial="hidden"

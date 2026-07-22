@@ -112,7 +112,7 @@ const brands: Brand[] = [
 // accounting for the gap-5 (20px) spacing between cards. Adjust the math
 // here if the gap value or breakpoint counts change.
 const CARD_WIDTH_CLASSES =
-  "w-[calc(50%-10px)] sm:w-[calc(33.3333%-13.333px)] md:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] xl:w-[calc(16.6667%-16.667px)]";
+  "w-[calc(100%-10px)] xs:w-[calc(50%-10px)] sm:w-[calc(33.3333%-13.333px)] md:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] xl:w-[calc(16.6667%-16.667px)]";
 
 const containerVariants = {
   hidden: {},
@@ -150,7 +150,7 @@ export default function Brands() {
 
   return (
     <section id="brands" className="section-pad bg-paper">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto">
         <div className="mb-14 flex items-center justify-center gap-5">
           <span className="h-px w-12 bg-gold-500 sm:w-20" />
           <h2 className="text-center font-display text-2xl font-extrabold uppercase tracking-wide text-ink sm:text-3xl">
@@ -185,7 +185,7 @@ export default function Brands() {
                 transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
                 className={`group flex ${CARD_WIDTH_CLASSES} flex-none snap-start flex-col items-center gap-4 border border-line px-4 py-8 transition-colors duration-300 hover:border-gold-500 hover:shadow-card mt-2`}
               >
-                <span className="relative flex h-14 w-20 items-center justify-center">
+                <span className="relative flex h-16 w-26 items-center justify-center">
                   <Image
                     src={`/brands/${b.image}`}
                     alt={`${b.name} logo`}

@@ -11,7 +11,7 @@ const links = [
 export default function Footer() {
   return (
     <footer className="bg-paper">
-      <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 lg:px-16">
+      <div className="mx-auto px-6 py-12 sm:px-10 lg:px-16">
         <div className="flex flex-col items-center gap-8 border-b border-line pb-10 text-center lg:flex-row lg:justify-between lg:text-left">
           <a href="/" className="flex items-center gap-3">
             <CarMark className="h-6 w-14 text-ink" strokeWidth={2} />

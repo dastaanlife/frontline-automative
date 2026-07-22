@@ -89,7 +89,7 @@ export default function Hero() {
       </div>
 
       {/* Precision-wipe banner slideshow */}
-      <div className="absolute inset-0 left-100" aria-hidden="true">
+      <div className="absolute inset-0 left-70 lg:left-90  xl:left-100" aria-hidden="true">
         {/* Base layer: the current banner, always fully visible underneath */}
         <div className="absolute inset-0">
           <Image
@@ -141,7 +141,7 @@ export default function Hero() {
       {/* White wipe: opaque on the left where copy sits, dissolving toward the banner */}
       <div className="pointer-events-none absolute inset-0 bg-hero-wipe" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-10 sm:px-10 lg:px-16 lg:pb-32">
+      <div className="relative mx-auto px-6 pb-24 pt-10 sm:px-10 lg:px-16 lg:pb-32">
         <motion.div
           variants={container}
           initial="hidden"

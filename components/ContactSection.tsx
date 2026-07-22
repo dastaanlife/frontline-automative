@@ -21,7 +21,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="section-pad bg-ink text-white">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto">
         <div className="mb-14 max-w-xl">
           <p className="eyebrow mb-4">Get In Touch</p>
           <h2 className="font-display text-3xl font-extrabold uppercase leading-tight sm:text-4xl">
