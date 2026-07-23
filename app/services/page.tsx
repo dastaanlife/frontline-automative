@@ -2,9 +2,18 @@ import type { Metadata } from "next";
 import ServicesGrid from "@/components/ServicesGrid";
 
 export const metadata: Metadata = {
-  title: "Our Services | Front Line Automotive",
+  title: "Premium Automotive Services & Maintenance",
   description:
-    "The full range of luxury automotive services offered by Front Line Automotive — from mechanical repairs and diagnostics to detailing and performance upgrades.",
+    "The full range of luxury automotive services offered by Front Line Automotive in Sharjah — from mechanical repairs and diagnostics to detailing and performance upgrades.",
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    title: "Premium Automotive Services | Front Line Automotive",
+    description:
+      "Explore our full range of vehicle maintenance and repair services at our specialized Sharjah workshop.",
+    url: "https://frontlineautomotive.com/services", // PLACEHOLDER: Ensure domain is correct
+  },
 };
 
 export default function ServicesPage() {

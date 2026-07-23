@@ -32,9 +32,38 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Front Line Automotive | Precision in Motion",
+  metadataBase: new URL("https://frontlineautomotive.com"), // PLACEHOLDER: Ensure this matches your actual production domain
+  title: {
+    default: "Front Line Automotive | Precision in Motion",
+    template: "%s | Front Line Automotive",
+  },
   description:
-    "Luxury automotive care in Dubai. Vehicle inspection, detailing, PPF, mechanical service, ceramic coating, and restoration for the world's finest cars.",
+    "Luxury automotive care in Dubai and Sharjah. Vehicle inspection, detailing, PPF, mechanical service, ceramic coating, and restoration for the world's finest cars.",
+  keywords: [
+    "auto repair Sharjah",
+    "car maintenance Dubai",
+    "luxury vehicle service UAE",
+    "car detailing",
+    "mechanical repairs Sharjah",
+  ], // PLACEHOLDER: You can adjust or add more specific keywords here
+  openGraph: {
+    title: "Front Line Automotive | Precision in Motion",
+    description:
+      "Luxury automotive care in Dubai and Sharjah. Vehicle inspection, detailing, PPF, mechanical service, ceramic coating, and restoration for the world's finest cars.",
+    url: "https://frontlineautomotive.com", // PLACEHOLDER: Ensure this matches your production domain
+    siteName: "Front Line Automotive",
+    locale: "en_AE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Front Line Automotive | Precision in Motion",
+    description:
+      "Luxury automotive care in Dubai and Sharjah. Vehicle inspection, detailing, PPF, mechanical service, ceramic coating, and restoration for the world's finest cars.",
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
