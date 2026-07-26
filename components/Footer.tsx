@@ -1,3 +1,4 @@
+import Image from "next/image";
 const links = [
   { label: "Home", href: "/#home" },
   { label: "About Us", href: "/#about" },
@@ -36,7 +37,7 @@ export default function Footer() {
       <div className="mx-auto px-6 py-12 sm:px-10 lg:px-16">
         <div className="flex flex-col items-center gap-8 border-b border-line pb-10 text-center lg:flex-row lg:justify-between lg:text-left">
           <a href="/" className="flex items-center gap-3">
-            <img src="/logo/logo-c.png" alt="Front Line Automotive Logo" className="h-10 w-auto object-contain" />
+            {/* <img src="/logo/logo-c.png" alt="Front Line Automotive Logo" className="h-10 w-auto object-contain" />
             <span className="flex flex-col leading-none">
               <span className="font-display text-base font-bold tracking-wide text-ink">
                 FRONT LINE AUTOMOTIVE
@@ -44,7 +45,14 @@ export default function Footer() {
               <span className="mt-0.5 text-[9px] font-medium tracking-widest2 text-gold-500">
                 PRECISION IN MOTION
               </span>
-            </span>
+            </span> */}
+            <Image
+              src="/logo/logo-l2.png"
+              alt="Front Line Automotive Logo"
+              width={500}
+              height={300}
+              className="w-[150px] md:w-[200px] object-contain bg-transparent"
+            />
           </a>
 
           <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">

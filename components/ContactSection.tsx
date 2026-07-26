@@ -83,8 +83,8 @@ export default function ContactSection() {
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           {/* Info panel */}
           <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-10 lg:flex-row lg:gap-4">
-              <div className="flex items-start gap-4 lg:flex-1">
+            <div className="flex flex-col gap-10 md:flex-row md:gap-4">
+              <div className="flex items-start gap-4 md:flex-1">
                 <MapPin className="mt-1 flex-none text-gold-500" size={20} />
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-white">
@@ -102,7 +102,7 @@ export default function ContactSection() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start gap-4 lg:flex-1 lg:justify-end">
+              <div className="flex items-start gap-4 md:flex-1 lg:justify-end">
                 <Phone className="mt-1 flex-none text-gold-500" size={20} />
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-white">
@@ -117,8 +117,8 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-10 lg:flex-row lg:gap-4">
-              <div className="flex items-start gap-4 lg:flex-1">
+            <div className="flex flex-col gap-10 md:flex-row md:gap-4">
+              <div className="flex items-start gap-4 md:flex-1">
                 <Mail className="mt-1 flex-none text-gold-500" size={20} />
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-white">
@@ -132,7 +132,7 @@ export default function ContactSection() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start gap-4 lg:flex-1 lg:justify-end">
+              <div className="flex items-start gap-4 md:flex-1 lg:justify-end">
                 <Globe className="mt-1 flex-none text-gold-500" size={20} />
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-wide text-white">
@@ -159,7 +159,7 @@ export default function ContactSection() {
                   {hours.map((h) => (
                     <div
                       key={h.day}
-                      className="flex justify-between gap-6 text-sm text-white/60"
+                      className="flex lg:justify-between gap-6 text-sm text-white/60"
                     >
                       <span>{h.day}</span>
                       <span className="text-white/80">{h.time}</span>
@@ -170,7 +170,7 @@ export default function ContactSection() {
             </div>
 
             {/* Map embed */}
-            <div className="relative mt-2 hidden aspect-[4/3] w-full overflow-hidden border border-white/10 sm:block">
+            <div className="relative mt-2 aspect-[4/3] w-full max-h-[30vh] lg:max-h-full overflow-hidden border border-white/10 sm:block">
               <iframe
                 title="Front Line Auto Maintenance location"
                 src={`https://www.google.com/maps?q=${encodeURIComponent(

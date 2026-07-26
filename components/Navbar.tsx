@@ -27,11 +27,11 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logo/logo-c.png"
+            src="/logo/logo-l2.png"
             alt="Front Line Automotive Logo"
-            width={64}
-            height={32}
-            className="w-full h-full objec-cover bg-transparent rounded-full"
+            width={200}
+            height={150}
+            className="w-[100px] sm:w-[120px] lg:w-[140px] object-contain bg-transparent absolute"
           />
         </Link>
 
