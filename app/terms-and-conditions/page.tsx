@@ -19,7 +19,7 @@ export default function TermsAndConditions() {
             <li><strong>Company Name:</strong> FRONT LINE AUTO MAINT L.L.C</li>
             <li><strong>Trade License Number:</strong> 938258</li>
             <li><strong>Address:</strong> Unit 01, Industrial Area 11, Al Senaiyat, Sharjah, United Arab Emirates</li>
-            <li><strong>Email:</strong> management@frontlineautomotive.com</li>
+            <li><strong>Email:</strong> management@frontlineautomotive.co</li>
             <li><strong>Phone:</strong> +971 55 976 4426</li>
           </ul>
 
@@ -148,7 +148,7 @@ export default function TermsAndConditions() {
             <li><strong>FRONT LINE AUTO MAINT LLC</strong></li>
             <li>Unit 01, Industrial Area 11, Al Senaiyat, Sharjah, United Arab Emirates</li>
             <li><strong>Phone:</strong> +971 55 976 4426</li>
-            <li><strong>Email:</strong> management@frontlineautomotive.com</li>
+            <li><strong>Email:</strong> management@frontlineautomotive.co</li>
           </ul>
         </div>
       </div>

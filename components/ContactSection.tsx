@@ -30,8 +30,8 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = {
       name: formData.get("name"),
       phone: formData.get("phone"),
@@ -50,13 +50,13 @@ export default function ContactSection() {
         },
         body: JSON.stringify(data),
       });
-
+      console.log("Response status from /api/contact:", response.status);
       const responseData = await response.json().catch(() => ({}));
-
-      if (response.ok) {
+      console.log("Response from /api/contact:", responseData);
+      if (responseData?.success) {
         toast.success("Your message has been sent successfully!", { id: loadingToast });
         setSubmitted(true);
-        e.currentTarget.reset();
+        form.reset();
         setTimeout(() => setSubmitted(false), 3500);
       } else {
         toast.error(responseData.error || "Failed to send message. Please try again.", { id: loadingToast });

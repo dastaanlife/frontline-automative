@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Premium Automotive Services | Front Line Automotive",
     description:
       "Explore our full range of vehicle maintenance and repair services at our specialized Sharjah workshop.",
-    url: "https://frontlineautomotive.com/services", // PLACEHOLDER: Ensure domain is correct
+    url: "https://frontlineautomotive.co/services", // PLACEHOLDER: Ensure domain is correct
   },
 };
 

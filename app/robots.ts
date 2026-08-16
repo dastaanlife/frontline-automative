@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://frontlineautomotive.com/sitemap.xml', // PLACEHOLDER: Verify this domain
+    sitemap: 'https://frontlineautomotive.co/sitemap.xml', // PLACEHOLDER: Verify this domain
   };
 }

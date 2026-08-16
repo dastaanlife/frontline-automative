@@ -32,7 +32,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://frontlineautomotive.com"), // PLACEHOLDER: Ensure this matches your actual production domain
+  metadataBase: new URL("https://frontlineautomotive.co"), // PLACEHOLDER: Ensure this matches your actual production domain
   title: {
     default: "Front Line Automotive | Precision in Motion",
     template: "%s | Front Line Automotive",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Front Line Automotive | Precision in Motion",
     description:
       "Luxury automotive care in Dubai and Sharjah. Vehicle inspection, detailing, PPF, mechanical service, ceramic coating, and restoration for the world's finest cars.",
-    url: "https://frontlineautomotive.com", // PLACEHOLDER: Ensure this matches your production domain
+    url: "https://frontlineautomotive.co", // PLACEHOLDER: Ensure this matches your production domain
     siteName: "Front Line Automotive",
     locale: "en_AE",
     type: "website",

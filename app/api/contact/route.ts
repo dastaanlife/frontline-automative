@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const BREVO_CONTACT_TEMPLATE_ID = 8;
+const BREVO_CONTACT_TEMPLATE_ID = process.env.BREVO_CONTACT_TEMPLATE_ID || "10";
 const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
 
 export async function POST(request: Request) {
@@ -11,23 +11,22 @@ export async function POST(request: Request) {
     const emailData = {
       to: [
         {
-          email: process.env.EMAIL_USER || "management@frontlineautomotive.com",
-          name: "Front Line Automotive",
+          email: process.env.EMAIL_USER || "management@frontlineautomotive.co",
+          name: "Frontline Automotive",
         },
       ],
       replyTo: {
         email: email,
         name: name,
       },
-      templateId: BREVO_CONTACT_TEMPLATE_ID,
+      templateId: parseInt(BREVO_CONTACT_TEMPLATE_ID),
       params: {
-        firstName: name, 
-        lastName: "",
+        name: name, 
         phoneNo: phone,
         email: email,
+        service: service,
         subject: `Service Inquiry: ${service}`,
         message: message || "No message provided",
-        preferredContactMethod: "Any",
       },
     };
 

@@ -61,7 +61,7 @@ export default function PrivacyPolicy() {
             <li><strong>FRONT LINE AUTO MAINT LLC</strong></li>
             <li>Unit 01, Industrial Area 11, Al Senaiyat, Sharjah, United Arab Emirates</li>
             <li><strong>Phone:</strong> +971 55 976 4426</li>
-            <li><strong>Email:</strong> management@frontlineautomotive.com</li>
+            <li><strong>Email:</strong> management@frontlineautomotive.co</li>
           </ul>
         </div>
       </div>

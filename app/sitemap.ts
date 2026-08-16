@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://frontlineautomotive.com'; // PLACEHOLDER: Verify this domain
+  const baseUrl = 'https://frontlineautomotive.co'; // PLACEHOLDER: Verify this domain
 
   return [
     {

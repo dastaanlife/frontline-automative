@@ -19,9 +19,9 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "AutoRepair",
     name: "Front Line Auto Maint L.L.C",
-    image: "https://frontlineautomotive.com/logo/logo-l.png", // PLACEHOLDER: Ensure this image URL is correct
-    "@id": "https://frontlineautomotive.com",
-    url: "https://frontlineautomotive.com",
+    image: "https://frontlineautomotive.co/logo/logo-l.png", // PLACEHOLDER: Ensure this image URL is correct
+    "@id": "https://frontlineautomotive.co",
+    url: "https://frontlineautomotive.co",
     telephone: "+971559764426",
     address: {
       "@type": "PostalAddress",
